@@ -14,6 +14,6 @@ let package = Package(
     dependencies: [
     ],
     targets: [
-        .target(name: "WWRoundedSegmentedControl", dependencies: []),
+        .target(name: "WWRoundedSegmentedControl", resources: [.copy("Privacy")]),
     ]
 )

@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWRoundedSegmentedControl",
       "state" : {
-        "branch" : "main",
-        "revision" : "51fb3a66127d6d2629d03b74c1b6b7f917e8c0c6"
+        "revision" : "73e491be37fe8aa534456af56c43b114ef513a3c",
+        "version" : "1.0.0"
       }
     }
   ],
