@@ -1,14 +1,15 @@
 {
+  "originHash" : "05d1c325ccf223ea477e2bd0d4176551d544a092b43f72077c9fa7d1567a38f6",
   "pins" : [
     {
       "identity" : "wwroundedsegmentedcontrol",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWRoundedSegmentedControl",
       "state" : {
-        "revision" : "73e491be37fe8aa534456af56c43b114ef513a3c",
-        "version" : "1.0.0"
+        "revision" : "70b4fe598cd8228b807321b94c6921acf2b6c86c",
+        "version" : "1.0.2"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -11,8 +11,11 @@ import UIKit
 @IBDesignable
 open class WWRoundedSegmentedControl: UISegmentedControl {
     
-    @IBInspectable var cornerRadiusPercent: CGFloat = 0.5
+    @IBInspectable var innerCornerRadius: CGFloat = 8
+    @IBInspectable var outerCornerRadius: CGFloat = 8
     @IBInspectable var segmentInset: CGFloat = 5
+    
+    private var cornerRadiusPercent: CGFloat?
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -38,10 +41,23 @@ public extension WWRoundedSegmentedControl {
         self.cornerRadiusPercent = cornerRadiusPercent
         self.segmentInset = segmentInset
         
-        initSetting()
+        updateSetting()
+    }
+    
+    /// 改變圓角大小跟選項間隔
+    /// - Parameters:
+    ///   - cornerRadiusPercent: 圓角比例
+    ///   - segmentInset: 選項間隔
+    ///   - innerCornerRadius: 內部選項圓角
+    ///   - outerCornerRadius: 外部外框圓角
+    func change(innerCornerRadius: CGFloat, outerCornerRadius: CGFloat, segmentInset: CGFloat) {
         
-        setNeedsLayout()
-        layoutIfNeeded()
+        self.cornerRadiusPercent = nil
+        self.innerCornerRadius = innerCornerRadius
+        self.outerCornerRadius = outerCornerRadius
+        self.segmentInset = segmentInset
+        
+        updateSetting()
     }
 }
 
@@ -54,10 +70,24 @@ private extension WWRoundedSegmentedControl {
         roundedCornersSetting()
     }
     
+    func updateSetting() {
+        
+        initSetting()
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+    
     /// 圓角設定
     func cornerRadiusSetting() {
+        
+        var cornerRadius = outerCornerRadius
+        
+        if let cornerRadiusPercent = cornerRadiusPercent {
+            cornerRadius = bounds.height * cornerRadiusPercent
+        }
+        
         layer.masksToBounds = true
-        layer.cornerRadius = bounds.height * cornerRadiusPercent
+        layer.cornerRadius = cornerRadius
     }
     
     /// [設定圓角](https://stackoverflow.com/questions/23317645/how-to-change-the-corner-radius-of-uisegmentedcontrol)
@@ -75,6 +105,10 @@ private extension WWRoundedSegmentedControl {
         foregroundImageView.image = UIImage._colorImage(selectedSegmentTintColor ?? .gray)
         foregroundImageView.layer._removeAnimation(forKey: "SelectionBounds")
         foregroundImageView.layer.masksToBounds = true
-        foregroundImageView.layer.cornerRadius = foregroundImageView.bounds.height * cornerRadiusPercent
+        foregroundImageView.layer.cornerRadius = innerCornerRadius
+        
+        if let cornerRadiusPercent = cornerRadiusPercent {
+            foregroundImageView.layer.cornerRadius = foregroundImageView.bounds.height * cornerRadiusPercent
+        }
     }
 }

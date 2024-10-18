@@ -18,8 +18,8 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.mySegmentedControl.change(cornerRadiusPercent: 0.3, segmentInset: 10)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [unowned self] in
+            mySegmentedControl.change(cornerRadiusPercent: 0.5, segmentInset: 5)
         }
     }
 }
