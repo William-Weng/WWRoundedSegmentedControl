@@ -7,13 +7,19 @@
 - 將原本的UISegmentedControl，加上圓角功能。
 
 ![WWRoundedSegmentedControl](./Example.png)
+![WWRoundedSegmentedControl](./Example.gif)
 
 ### [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```swift
 dependencies: [
-    .package(url: "https://github.com/William-Weng/WWRoundedSegmentedControl.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/William-Weng/WWRoundedSegmentedControl.git", .upToNextMajor(from: "1.0.1"))
 ]
 ```
+
+### Function - 可用函式
+|函式|功能|
+|-|-|
+|change(cornerRadiusPercent:segmentInset:)|改變圓角比例跟選項間隔|
 
 ### Example
 ```swift
@@ -28,6 +34,10 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.mySegmentedControl.change(cornerRadiusPercent: 0.3, segmentInset: 10)
+        }
     }
 }
 ```
